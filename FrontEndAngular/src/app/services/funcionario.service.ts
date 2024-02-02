@@ -15,20 +15,19 @@ export class FuncionarioService {
   constructor( private http: HttpClient ) { }
 
   GetFuncionarios() : Observable<Response<Funcionario[]>> {
-    // let headers = new HttpHeaders().set('Access-Control-Allow-Origin','*');
-    // headers = headers.append('Connection', 'keep-alive');
-    // headers = headers.append('Accept', 'application/json, text/plain, */*');
-    // headers = headers.append('Accept-Encoding', 'gzip, deflate, br');
-    // const headers = new HttpHeaders()       
-    // .append('Content-Type', 'application/json')       
-    // .append('Access-Control-Allow-Headers', 'Content-Type')       
-    // .append('Access-Control-Allow-Methods', 'GET')       
-    // .append('Access-Control-Allow-Origin', '*');     
-    // const x = this.http.get(this.apiUrl,  {headers});
-    // console.log('returno x',x);
+    const headers = new HttpHeaders()       
+    .append('Content-Type', 'application/json')       
+    .append('Access-Control-Allow-Headers', 'Content-Type')       
+    .append('Access-Control-Allow-Methods', 'GET')       
+    .append('Access-Control-Allow-Origin', '*');     
+    const x = this.http.get(this.apiUrl,  {headers});
+    console.log('returno x',x);
     
-    return this.http.get<Response<Funcionario[]>>(this.apiUrl);
+    return this.http.get<Response<Funcionario[]>>(this.apiUrl,{headers : headers});
     
   }
 
+  CreateFuncionario(funcionario: Funcionario) : Observable<Response<Funcionario[]>> {
+    return this.http.post<Response<Funcionario[]>>(`${this.apiUrl}`, funcionario);
+  }
 }
