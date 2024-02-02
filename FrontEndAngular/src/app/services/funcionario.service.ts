@@ -14,20 +14,26 @@ export class FuncionarioService {
   
   constructor( private http: HttpClient ) { }
 
+ 
   GetFuncionarios() : Observable<Response<Funcionario[]>> {
-    const headers = new HttpHeaders()       
-    .append('Content-Type', 'application/json')       
-    .append('Access-Control-Allow-Headers', 'Content-Type')       
-    .append('Access-Control-Allow-Methods', 'GET')       
-    .append('Access-Control-Allow-Origin', '*');     
-    const x = this.http.get(this.apiUrl,  {headers});
-    console.log('returno x',x);
-    
-    return this.http.get<Response<Funcionario[]>>(this.apiUrl,{headers : headers});
-    
+    return this.http.get<Response<Funcionario[]>>(this.apiUrl);
+}
+ 
+
+  GetFuncionario(id: number) : Observable<Response<Funcionario>> {
+    return this.http.get<Response<Funcionario>>(`${this.apiUrl}/${id}`);
   }
 
   CreateFuncionario(funcionario: Funcionario) : Observable<Response<Funcionario[]>> {
     return this.http.post<Response<Funcionario[]>>(`${this.apiUrl}`, funcionario);
   }
+
+  EditFuncionario(funcionario : Funcionario) : Observable<Response<Funcionario[]>> {
+    return this.http.put<Response<Funcionario[]>>(`${this.apiUrl}`, funcionario);
+}
+
+InativaFuncionario(id : number) : Observable<Response<Funcionario[]>>{
+  return this.http.put<Response<Funcionario[]>>(`${this.apiUrl}/InativaFuncionario/${id}`, id);
+}
+
 }

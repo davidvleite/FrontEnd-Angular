@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Funcionario } from 'src/app/models/Funcionarios';
 
 @Component({
@@ -7,29 +7,40 @@ import { Funcionario } from 'src/app/models/Funcionarios';
   templateUrl: './funcionario-form.component.html',
   styleUrls: ['./funcionario-form.component.css']
 })
+
+
 export class FuncionarioFormComponent implements OnInit{
 
   @Output() onSubmit = new EventEmitter<Funcionario>();
+  @Input() btnAcao!: string;
+  @Input() btnTitulo!: string;
+  @Input() dadosFuncionario: Funcionario | null = null;
+
   funcionarioForm!: FormGroup;
+  ativo:number = 1;
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
 
-    this.funcionarioForm = new FormGroup({
-      id: new FormControl(0),
-      nome: new FormControl(''),
-      sobrenome: new FormControl(''),
-      departamento: new FormControl(''),
-      turno: new FormControl(''),
-      ativo: new FormControl(true),
+    console.log(this.dadosFuncionario?.ativo);
+
+ this.funcionarioForm = new FormGroup ({
+      id: new FormControl(this.dadosFuncionario ? this.dadosFuncionario.id : 0),
+      nome: new FormControl(this.dadosFuncionario ? this.dadosFuncionario.nome : '', [Validators.required]),
+      sobrenome: new FormControl(this.dadosFuncionario ? this.dadosFuncionario.sobrenome : '',[Validators.required]),
+      departamento: new FormControl(this.dadosFuncionario ? this.dadosFuncionario.departamento : '',[Validators.required]),
+      turno: new FormControl(this.dadosFuncionario ? this.dadosFuncionario.turno : '',[Validators.required]),
+      ativo:  new FormControl(this.dadosFuncionario ? this.dadosFuncionario?.ativo : true),
       dataDeCriacao: new FormControl(new Date()),
-      dataDeAlteracao: new FormControl(new Date()),
+      dataDeAlteracao: new FormControl(new Date())
     });
 
   }
 
   submit (){
+
+    console.log(this.funcionarioForm.value)
 
     this.onSubmit.emit(this.funcionarioForm.value);
 

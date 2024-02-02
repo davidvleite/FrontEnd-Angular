@@ -23,12 +23,12 @@ export class HomeComponent implements OnInit{
 
       dados.map((item) => {
         item.dataDeCriacao = new Date(item.dataDeCriacao!).toLocaleDateString('pt-BR')
-        item.dataDeAlteracao = new Date(item.dataDeAlteracao!).toLocaleDateString('pt-BR')
-
       })
 
-      this.funcionarios = data.dados;
-      this.funcionariosGeral = data.dados;
+
+      this.funcionariosGeral = dados;
+      this.funcionarios = dados;
+      
 
     });
 
