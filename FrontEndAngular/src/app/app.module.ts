@@ -18,6 +18,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ExcluirComponent } from './componentes/excluir/excluir.component';
+
 
 
 @NgModule({
@@ -27,7 +31,8 @@ import {MatSelectModule} from '@angular/material/select';
     CadastroComponent,
     FuncionarioFormComponent,
     EditarComponent,
-    DetalhesComponent
+    DetalhesComponent,
+    ExcluirComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

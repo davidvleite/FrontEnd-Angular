@@ -6,5 +6,5 @@ export interface Funcionario{
     ativo : boolean;
     turno : string;
     dataDeCriacao? : string;
-    dataDeAlteracao? : string;
+    dateDeAlteracao? : string;
 }

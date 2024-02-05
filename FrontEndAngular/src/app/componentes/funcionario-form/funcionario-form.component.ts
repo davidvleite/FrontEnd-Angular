@@ -33,7 +33,7 @@ export class FuncionarioFormComponent implements OnInit{
       turno: new FormControl(this.dadosFuncionario ? this.dadosFuncionario.turno : '',[Validators.required]),
       ativo:  new FormControl(this.dadosFuncionario ? this.dadosFuncionario?.ativo : true),
       dataDeCriacao: new FormControl(new Date()),
-      dataDeAlteracao: new FormControl(new Date())
+      dateDeAlteracao: new FormControl(new Date())
     });
 
   }

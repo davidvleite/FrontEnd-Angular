@@ -13,7 +13,7 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
 export class EditarComponent implements OnInit{
 
   btnAcao = "Editar";
-  btnTitulo = "Editar Funcionário!";
+  btnTitulo = "Editar funcionário";
   funcionario!: Funcionario;
 
   constructor(private funcionarioService : FuncionarioService, private router :Router,  private route : ActivatedRoute) {
